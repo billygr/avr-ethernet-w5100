@@ -1,0 +1,17 @@
+VCC, GND, CS, SO, SI, SCK
+
+Arduino Ethernet Shield
+VCC to Arduino Pin 3.3V
+GND to Arduino Pin GND
+CS to Arduino Digital Pin 10 (PB2)
+SI to Arduino Digital Pin 11 (PB3)
+SO to Arduino Digital Pin 12 (PB4)
+SCK to Arduino Digital Pin 13 (PB5)
+
+SPI pin out
+
+MCU/Device	SS	SCK	MOSI	MISO
+AT90USB82/162	PB0	PB1	PB2	PB3
+48/88/168/328	PB2	PB5	PB3	PB4
+ATtiny8	-	-	PA6	PA5
+Arduino		10	13	11	12
