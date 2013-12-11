@@ -164,8 +164,3 @@ unsigned char  W51_config(W5100_CFG  *pcfg)
 
 	return  W5100_OK;								// everything worked, show success
 }
-
-
-
-
-
