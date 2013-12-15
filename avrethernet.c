@@ -10,6 +10,7 @@
 #include <avr/pgmspace.h>
 #include "w5100.h"
 #include "avrethernet.h"
+#include "uart.h"
 
 #define  MAX_BUF                                        512                     /* largest buffer we can read from chip */
 
@@ -22,6 +23,7 @@
  *  Define the MAC address, IP address, subnet mask, and gateway
  *  address for the target device.
  */
+
 W5100_CFG                                       my_cfg =
 {
         {0x00,0x16,0x36,0xDE,0x58,0xF6},                        // mac_addr
@@ -300,32 +302,13 @@ void  my_reset(void)
         _delay_ms(10);                                                                                  // let the chip wake up
 }
 
-void serial_init(unsigned int bittimer)
-{
-        /* Set the baud rate */
-        UBRR0H = (unsigned char) (bittimer >> 8);
-        UBRR0L = (unsigned char) bittimer;
-        /* set the framing to 8N1 */
-        UCSR0C = (3 << UCSZ00);
-        /* Engage! */
-        UCSR0B = (1 << RXEN0) | (1 << TXEN0);
-        return;
-}
-
-void serial_write(unsigned char c)
-{
-        while ( !(UCSR0A & (1 << UDRE0)) )
-                ;
-        UDR0 = c;
-}
-
 #define SPEED 9600
-static FILE mystdout = FDEV_SETUP_STREAM(serial_write, NULL, _FDEV_SETUP_WRITE);
+static FILE mystdout = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
 
 int main (void)
 {
-        /* let the preprocessor calculate this */
-        serial_init( ( F_CPU / SPEED / 16 ) - 1);
+        /* Initialize the UART for ATmega168 96008N1    */
+        uart_init();
 
 	stdout = &mystdout; //Required for printf init
 

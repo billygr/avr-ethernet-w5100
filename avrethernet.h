@@ -1,9 +1,6 @@
 #ifndef AVRETHERNETH
 #define AVRETHERNETH
 
-void serial_init(unsigned int bittimer);
-void serial_write(unsigned char c);
-
 unsigned char OpenSocket(unsigned char  sock, unsigned char  eth_protocol, unsigned int  tcp_port);
 void CloseSocket(unsigned char  sock);
 void DisconnectSocket(unsigned char  sock);
