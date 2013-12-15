@@ -1,5 +1,5 @@
 PRG            = avrethernet
-OBJ            = avrethernet.o w5100.o
+OBJ            = avrethernet.o w5100.o uart.o
 MCU_TARGET     = atmega168
 OPTIMIZE       = -O2
 
