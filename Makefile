@@ -3,7 +3,9 @@ OBJ            = avrethernet.o w5100.o uart.o
 MCU_TARGET     = atmega168
 OPTIMIZE       = -O2
 
-DEFS           =
+F_CPU          = 16000000L
+
+DEFS           = -DF_CPU=$(F_CPU)
 LIBS           = 
 
 # You should not have to change anything below here.

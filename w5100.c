@@ -1,5 +1,3 @@
-#define F_CPU 16000000UL
-
 /*
  *  w5100.c      library of target-independent AVR support routines
  *               for the Wiznet W5100 Ethernet interface device
