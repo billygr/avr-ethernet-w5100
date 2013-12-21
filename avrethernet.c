@@ -297,14 +297,15 @@ void my_reset(void)
 }
 
 #define SPEED 9600
-static FILE mystdout = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
+// Assign I/O stream to UART
+static FILE uart_stdout = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
 
 int main(void)
 {
 	/* Initialize the UART for ATmega168 96008N1    */
 	uart_init();
 
-	stdout = &mystdout;	//Required for printf init
+	stdout = &uart_stdout;	//Required for printf init
 
 	unsigned int sockaddr;
 	unsigned char mysocket;
