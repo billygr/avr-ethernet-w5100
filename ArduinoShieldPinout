@@ -1,6 +1,5 @@
-VCC, GND, CS, SO, SI, SCK
-
 Arduino Ethernet Shield
+
 VCC to Arduino Pin 3.3V
 GND to Arduino Pin GND
 CS to Arduino Digital Pin 10 (PB2)
