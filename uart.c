@@ -1,9 +1,10 @@
-#define F_CPU 16000000
 #define SPEED 9600
 
 #include <avr/io.h>
 #include <stdio.h>
 #include "uart.h"
+
+/* For ATMEga168 ONLY. you need to adapt it to other AVR CPUs   */
 
 void uart_init(void)
 {
@@ -35,4 +36,26 @@ int uart_putchar(char c, FILE * stream)
 	UDR0 = c;
 
 	return 0;
+}
+
+int uart_getchar(FILE * stream)
+{
+	unsigned char ch;
+	while (!(UCSR0A & (1 << RXC0))) ;
+	ch = UDR0;
+
+	/* Echo the Output Back to terminal */
+	uart_putchar(ch, stream);
+
+	return ch;
+}
+
+unsigned char uart_kbhit(void)
+{
+	//return nonzero if char is waiting (polled version)
+	unsigned char b;
+	b = 0;
+	if (UCSR0A & (1 << RXC0))
+		b = 1;
+	return b;
 }
