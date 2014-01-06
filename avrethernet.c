@@ -1,5 +1,3 @@
-#define F_CPU 16000000L
-
 /*      AVR webserver with Arduino Ethernet Shield works on ATMEGA168
 */
 
@@ -296,27 +294,26 @@ void my_reset(void)
 	_delay_ms(10);		// let the chip wake up
 }
 
-#define SPEED 9600
 // Assign I/O stream to UART
 static FILE uart_stdout = FDEV_SETUP_STREAM(uart_putchar, NULL, _FDEV_SETUP_WRITE);
 
 int main(void)
 {
+	unsigned int sockaddr;
+	unsigned char mysocket;
+	unsigned int rsize;
+
 	/* Initialize the UART for ATmega168 96008N1    */
 	uart_init();
 
 	stdout = &uart_stdout;	//Required for printf init
 
-	unsigned int sockaddr;
-	unsigned char mysocket;
-	unsigned int rsize;
-
 	mysocket = 0;		// magic number! declare the socket number we will us
 	sockaddr = W5100_SKT_BASE(mysocket);	// calc address of W5100 register set for this socket
 
-	puts("AVR Ethernet 1\r\n");
+	puts("AVR Ethernet\r\n");
 /*
- *  Initialize the ATmega128 SPI subsystem
+ *  Initialize the ATmega168 SPI subsystem
  */
 	CS_PORT |= (1 << CS_BIT);	// pull CS pin high
 	CS_DDR |= (1 << CS_BIT);	// now make it an output
@@ -343,7 +340,7 @@ int main(void)
  */
 	W51_config(&my_cfg);	// config the W5100 (MAC, TCP address, subnet, etc
 
-	puts("AVR Ethernet 2\r\n");
+	puts("Debug: AVR Ethernet after W5100 config\r\n");
 
 /*
  *  The main loop.  Control stays in this loop forever, processing any received packets
