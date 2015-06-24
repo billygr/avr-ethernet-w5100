@@ -1,6 +1,6 @@
 PRG            = avrethernet
 OBJ            = avrethernet.o w5100.o uart.o
-MCU_TARGET     = atmega168
+MCU_TARGET     = atmega328
 OPTIMIZE       = -O2
 
 F_CPU          = 16000000L

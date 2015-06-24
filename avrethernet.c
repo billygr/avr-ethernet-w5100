@@ -21,10 +21,10 @@
  */
 
 W5100_CFG my_cfg = {
-	{0x00, 0x16, 0x36, 0xDE, 0x58, 0xF6},	// MAC address
-	{172, 31, 0, 200},			// IP address
+	{0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED},	// MAC address
+	{192, 168, 1, 177},			// IP address
 	{255, 255, 255, 0},			// Subnet mask
-	{172, 31, 0, 1}                         // Gateway
+	{192, 168, 1, 1}                         // Gateway
 };
 
 /*
